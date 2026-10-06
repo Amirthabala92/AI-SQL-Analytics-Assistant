@@ -8,7 +8,7 @@ Business users often need answers from structured data but may not know SQL. Thi
 
 ## How It Works
 
-User question ? Streamlit chat interface ? OpenAI LLM generates SQL using database schema and relationships ? SQL validation/read-only guardrails ? SQLite executes the query ? Query result is sent to the LLM ? Business-friendly answer is displayed.
+User question → Streamlit chat interface → OpenAI LLM generates SQL using database schema and relationships → SQL validation/read-only guardrails → SQLite executes the query → Query result is sent to the LLM → Business-friendly answer is displayed.
 
 Each successful request makes two OpenAI API calls: one to generate SQL and one to explain the results. The answer appears in chat, with generated SQL and raw results under **View details**. Session state preserves visible chat history during reruns; previous messages are not sent to the model, so questions are handled independently.
 
@@ -35,7 +35,7 @@ flowchart TD
 
 **All data is synthetic and contains no proprietary or confidential company data.** Station names and operational values are fictional and generated locally with a fixed random seed.
 
-The dataset covers **8 stations**, **4 regions**, and **181 days**, from **January 1?June 30, 2026**. Invented patterns include lower weekend volume, gradual growth, and a temporary regional disruption.
+The dataset covers **8 stations**, **4 regions**, and **181 days**, from **January 1 to June 30, 2026**. Invented patterns include lower weekend volume, gradual growth, and a temporary regional disruption.
 
 | Table | Rows | Contents |
 | --- | ---: | --- |
@@ -91,11 +91,11 @@ These checks restrict database operations; they do not guarantee correct joins, 
 
 ## Tech Stack
 
-- **Python** ? application logic and synthetic data generation
-- **OpenAI API / Python SDK** ? `gpt-5` through the Responses API for SQL generation and result explanation
-- **SQLite / Python `sqlite3`** ? relational data, validation, and query execution
-- **Streamlit** ? chat interface, session state, and expandable query details
-- **python-dotenv** ? local environment configuration
+- **Python** - application logic and synthetic data generation
+- **OpenAI API / Python SDK** - `gpt-5` through the Responses API for SQL generation and result explanation
+- **SQLite / Python `sqlite3`** - relational data, validation, and query execution
+- **Streamlit** - chat interface, session state, and expandable query details
+- **python-dotenv** - local environment configuration
 
 ## Running Locally
 
@@ -154,10 +154,16 @@ Not implemented yet:
 - Cloud deployment
 - Visualization and chart generation
 
-## Screenshot
+## Screenshots
 
-*Placeholder: add a screenshot of the Streamlit application showing a business question, its answer, and the expanded View details section.*
+**Station operating cost and on-time delivery:** a business answer with the generated multi-table JOIN.
 
-<!-- Add the image when available:
-![Streamlit chat showing an answer and query details](docs/images/streamlit-demo.png)
--->
+![Highest-cost station and on-time delivery answer with generated SQL](docs/streamlit-demo.png)
+
+**Regional failure rate:** the answer, generated SQL, and raw query result.
+
+![Regional package failure rate with SQL and raw results](docs/streamlit-demo1.png)
+
+**Monthly package volume:** a monthly aggregation with its supporting query result.
+
+![Highest-volume month with generated SQL and raw results](docs/streamlit-demo2.png)
